@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0b1522;
+}
+
+.heart {
+    height: 70px;
+    width: 70px;
+    background: #f20044;
+    position: relative;
+    transform: rotate(-45deg);
+    box-shadow: -10px 10px 90px #ffffff;
+    animation: heartbeat 0.6s linear infinite;
+    cursor: pointer;
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: rotate(-45deg) scale(1.07);
+    }
+    80% {
+        transform: rotate(-45deg) scale(1.0);
+    }
+    100% {
+        transform: rotate(-45deg) scale(0.8);
+    }
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    height: 70px;
+    width: 70px;
+    background: linear-gradient(to top, #f20044 50%, #000 50%);
+    border-radius: 50%;
+    background-size: 100% 200%;
+    background-position: 100% 100%;
+    transition: background 0.3s ease, background-position 1s ease;
+}
+
+.heart::before {
+    top: -50%;
+}
+
+.heart::after {
+    right: -50%;
+}
+
+.heart:hover::after,
+.heart:hover::before {
+    background: #f20044;
+}
+
+/* Water fill effect */
+.heart.water::before,
+.heart.water::after {
+    background-position: 100% 0%;
+}
+
+/* New class for the "dead" state */
+.dead {
+    background: #000;
+    animation: none;
+}
+
+.dead::before,
+.dead::after {
+    background: #000;
+}
